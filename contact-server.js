@@ -6,8 +6,6 @@ server.on("connection", function(ws){
         server.clients.forEach(function(client, index){
             if (client !== ws){
                 client.send(data);
-            } else {
-                console.log("not " + index)
             }
         });
     });

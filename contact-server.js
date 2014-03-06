@@ -5,7 +5,9 @@ server.on("connection", function(ws){
     ws.on("message", function(data){
         server.clients.forEach(function(client, index){
             if (client !== ws){
-                client.send(data);
+                client.send(data, function(err){
+                    if (err) console.error(err.message);
+                });
             }
         });
     });

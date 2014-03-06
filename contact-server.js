@@ -8,6 +8,10 @@ server.on("connection", function(ws){
                 client.send(data, function(err){
                     if (err) console.error(err.message);
                 });
+            } else {
+                client.send(JSON.stringify({ type: "ok" }), function(err){
+                    if (err) console.error(err.message);
+                });
             }
         });
     });

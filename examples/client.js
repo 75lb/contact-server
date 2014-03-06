@@ -8,7 +8,11 @@ websocket.on("open", function(){
 });
 websocket.on("message", function(data, flags){
     var evt = JSON.parse(data);
-    console.log(evt.data.name + ": " + evt.data.msg);
+    if (evt.type === "message"){
+        console.log(evt.data.name + ": " + evt.data.msg);
+    } else {
+        console.dir(evt);
+    }
 });
 websocket.on("close", function(){
     process.stdin.removeListener("readable", stdinReadable);

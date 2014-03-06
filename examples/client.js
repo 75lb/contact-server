@@ -11,8 +11,12 @@ websocket.on("message", function(data, flags){
     console.log(evt.data.name + ": " + evt.data.msg);
 });
 websocket.on("close", function(){
-    console.log("CLOSED");
     process.stdin.removeListener("readable", stdinReadable);
+    console.log("CLOSED");
+});
+websocket.on("error", function(err){
+    console.log("ERROR: ");
+    console.dir(err);
 });
 
 function stdinReadable(){

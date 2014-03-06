@@ -12,3 +12,10 @@ server.on("connection", function(ws){
         });
     });
 });
+server.on("error", function(err){
+    console.error("ERROR");
+    console.dir(err);
+});
+process.on("EXIT", function(){
+    console.log("EXITING");
+});

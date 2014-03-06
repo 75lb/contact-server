@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <script>
+    var websocket = new WebSocket("ws://pacific-atoll-9829.herokuapp.com");
+    websocket.onopen = function(){
+      websocket.send("abc\n");
+      websocket.send("abc\n");
+      websocket.send("abc\n");
+      websocket.send("abc\n");
+      // websocket.close();
+    };
+    websocket.onmessage = function(msg){
+      console.dir(msg.data);
+    };
+    websocket.onerror = function(e){
+      console.dir(e.target);
+    };
+    window.a = websocket;
+    </script>
+  </body>
+</html>

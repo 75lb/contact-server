@@ -1,25 +1,19 @@
 var WebSocketServer = require("ws").Server;
 
+function errHandler(err){
+    if (err) console.error("Error: " + err.message);
+}
+
 var server = new WebSocketServer({ port: process.env.PORT || 5000 });
 server.on("connection", function(ws){
     ws.on("message", function(data){
         server.clients.forEach(function(client, index){
-            if (client !== ws){
-                client.send(data, function(err){
-                    if (err) console.error(err.message);
-                });
+            if (client === ws){
+                client.send(JSON.stringify({ type: "ok" }), errHandler);
             } else {
-                client.send(JSON.stringify({ type: "ok" }), function(err){
-                    if (err) console.error(err.message);
-                });
+                client.send(data, errHandler);
             }
         });
     });
 });
-server.on("error", function(err){
-    console.error("ERROR");
-    console.dir(err);
-});
-process.on("EXIT", function(){
-    console.log("EXITING");
-});
+server.on("error", errHandler);

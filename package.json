@@ -1,6 +1,6 @@
 {
   "name": "contact-server",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "a WIP server",
   "repository": "https://github.com/75lb/contact-server",
   "main": "echo.js",

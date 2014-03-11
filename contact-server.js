@@ -9,7 +9,9 @@ server.on("connection", function(ws){
     ws.on("message", function(data){
         server.clients.forEach(function(client, index){
             if (client === ws){
-                client.send(JSON.stringify({ user: "server", sys: "recvd", sent: Date.now() }), errHandler);
+                data = JSON.parse(data);
+                data.received = true;
+                client.send(JSON.stringify(data), errHandler);
             } else {
                 client.send(data, errHandler);
             }

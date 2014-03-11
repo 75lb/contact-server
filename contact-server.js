@@ -9,7 +9,7 @@ server.on("connection", function(ws){
     ws.on("message", function(data){
         server.clients.forEach(function(client, index){
             if (client === ws){
-                client.send(JSON.stringify({ server: "ok", sent: Date.now() }), errHandler);
+                client.send(JSON.stringify({ user: "server", sys: "recvd", sent: Date.now() }), errHandler);
             } else {
                 client.send(data, errHandler);
             }
